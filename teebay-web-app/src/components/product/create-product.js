@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Input, TextArea, Dropdown } from 'semantic-ui-react';
+import axios from 'axios';
 
 const CreateProduct = () => {
   const [product, setProduct] = useState({
@@ -20,9 +21,13 @@ const CreateProduct = () => {
 
   const handleChange = (e, { name, value }) => setProduct({ ...product, [name]: value });
 
-  const handleSubmit = () => {
-    console.log(product);
-    // Submit form logic here
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(`https://65f88c14df151452460fa890.mockapi.io/api/v1/products`, product);
+      console.log(response.data);
+    } catch (error) {
+      console.error("There was an error posting the data", error);
+    }
   };
 
   return (
