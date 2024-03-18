@@ -3,7 +3,7 @@ import './App.css';
 import './assets/css/bootstrap.min.css';
 
 import './assets/js/bootstrap.min.js';
-import './assets/js/jquery-3.3.1.min.js';
+import './assets/js/jquery-.min.js';
 
 function App() {
   return (
