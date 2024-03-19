@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Form, Input, TextArea, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 
@@ -25,6 +25,7 @@ const CreateProduct = () => {
     try {
       const response = await axios.post(`https://65f88c14df151452460fa890.mockapi.io/api/v1/products`, product);
       console.log(response.data);
+      // Handle response or success side effects here
     } catch (error) {
       console.error("There was an error posting the data", error);
     }

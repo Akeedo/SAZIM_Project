@@ -1,8 +1,9 @@
 
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 
 import CreateProduct from './components/product/create-product';
