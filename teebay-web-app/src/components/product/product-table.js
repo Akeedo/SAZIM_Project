@@ -1,7 +1,19 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 function ProductTable({ products }) {
+
+    const setData = (data) => {
+        let { id, title, category, description, price } = data;
+        localStorage.setItem('ID', id);
+        localStorage.setItem('Title', title);
+        localStorage.setItem('Category', category);
+        localStorage.setItem('Description', description);
+        localStorage.setItem('Price', price);
+    }
+
+
     return (
         <div>
         <Table singleLine>
@@ -22,9 +34,11 @@ function ProductTable({ products }) {
                 <Table.Cell>{product.category}</Table.Cell>
                 <Table.Cell>{product.description}</Table.Cell>
                 <Table.Cell>${product.price}</Table.Cell>
-                <Table.Cell> 
-                    <Button>Update</Button>
+                <Link to='/update-product'>
+               <Table.Cell> 
+                    <Button onClick={() => setData(product)}>Update</Button>
                 </Table.Cell>
+                </Link>
                 </Table.Row>
             ))}
             </Table.Body>
