@@ -11,6 +11,7 @@ function ProductTable({ products }) {
                 <Table.HeaderCell>Category</Table.HeaderCell>
                 <Table.HeaderCell>Description</Table.HeaderCell>
                 <Table.HeaderCell>Price</Table.HeaderCell>
+                <Table.HeaderCell>Update</Table.HeaderCell>
             </Table.Row>
             </Table.Header>
 
@@ -21,6 +22,9 @@ function ProductTable({ products }) {
                 <Table.Cell>{product.category}</Table.Cell>
                 <Table.Cell>{product.description}</Table.Cell>
                 <Table.Cell>${product.price}</Table.Cell>
+                <Table.Cell> 
+                    <Button>Update</Button>
+                </Table.Cell>
                 </Table.Row>
             ))}
             </Table.Body>
