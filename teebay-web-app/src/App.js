@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CreateProduct from './components/product/create-product';
 import GetAllProduct from './components/product/get-all-product';
+import UpdateProduct from './components/product/update-product';
 
 function App() {
   return (
@@ -15,14 +16,13 @@ function App() {
   <h2 className="main-header">React Crud Operations</h2>
 
       <Router>
-      <Routes> 
-        
-        <Route path="/create-product" element={<CreateProduct />} />
-        <Route path="/get-all-product" element={<GetAllProduct />} />
-        {/* Add more routes as needed */}
-      </Routes>
+        <Routes> 
+          <Route path="/create-product" element={<CreateProduct />} />
+          <Route path="/get-all-product" element={<GetAllProduct />} />
+          <Route path="/update-product/:productId" element={<UpdateProduct />} />
+        </Routes>
     </Router>
-   </div>
+  </div>
     
   );
 }
