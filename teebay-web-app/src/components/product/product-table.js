@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Table, Button  } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,8 +8,18 @@ function ProductTable({ products }) {
 
     const handleUpdateClick = (productId) => {
         navigate(`/update-product/${productId}`);
-      };
+    };
 
+    const onDelete = (id) => {
+        axios.delete(`https://65f88c14df151452460fa890.mockapi.io/api/v1/products/${id}`)
+        .then(() => {
+            reload();
+        })
+    }
+    
+    const reload = () => {
+        window.location.reload();
+    }
 
     return (
         <div>
@@ -20,6 +31,7 @@ function ProductTable({ products }) {
                 <Table.HeaderCell>Description</Table.HeaderCell>
                 <Table.HeaderCell>Price</Table.HeaderCell>
                 <Table.HeaderCell>Update</Table.HeaderCell>
+                <Table.HeaderCell>Delete</Table.HeaderCell>
             </Table.Row>
             </Table.Header>
 
@@ -30,11 +42,12 @@ function ProductTable({ products }) {
                 <Table.Cell>{product.category}</Table.Cell>
                 <Table.Cell>{product.description}</Table.Cell>
                 <Table.Cell>${product.price}</Table.Cell>
-                {/* <Link to='/update-product'> */}
-               <Table.Cell> 
+                <Table.Cell> 
                     <Button onClick={() => handleUpdateClick(product.id)}>Update</Button>
                 </Table.Cell>
-                {/* </Link> */}
+                <Table.Cell>
+                    <Button onClick={() => onDelete(product.id)}>Delete</Button>
+                </Table.Cell>
                 </Table.Row>
             ))}
             </Table.Body>
