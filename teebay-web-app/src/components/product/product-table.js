@@ -1,17 +1,13 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Table, Button  } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
 function ProductTable({ products }) {
+    const navigate = useNavigate();
 
-    const setData = (data) => {
-        let { id, title, category, description, price } = data;
-        localStorage.setItem('ID', id);
-        localStorage.setItem('Title', title);
-        localStorage.setItem('Category', category);
-        localStorage.setItem('Description', description);
-        localStorage.setItem('Price', price);
-    }
+    const handleUpdateClick = (productId) => {
+        navigate(`/update-product/${productId}`);
+      };
 
 
     return (
@@ -34,11 +30,11 @@ function ProductTable({ products }) {
                 <Table.Cell>{product.category}</Table.Cell>
                 <Table.Cell>{product.description}</Table.Cell>
                 <Table.Cell>${product.price}</Table.Cell>
-                <Link to='/update-product'>
+                {/* <Link to='/update-product'> */}
                <Table.Cell> 
-                    <Button onClick={() => setData(product)}>Update</Button>
+                    <Button onClick={() => handleUpdateClick(product.id)}>Update</Button>
                 </Table.Cell>
-                </Link>
+                {/* </Link> */}
                 </Table.Row>
             ))}
             </Table.Body>
