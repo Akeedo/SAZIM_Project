@@ -1,8 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input, TextArea, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 
 const CreateProduct = () => {
+
+  const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
   const [product, setProduct] = useState({
     title: '',
     category: '',
