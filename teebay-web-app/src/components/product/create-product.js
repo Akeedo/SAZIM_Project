@@ -36,7 +36,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <Form className="create-form" onSubmit={handleSubmit}>
+    <Form className="standard-form" onSubmit={handleSubmit}>
       <Form.Field
         control={Input}
         label='Title'
