@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form, Input, TextArea, Dropdown } from 'semantic-ui-react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const UpdateProduct = ({ productId }) => {
+const UpdateProduct = () => {
+  const { productId } = useParams(); 
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState({
@@ -55,7 +57,7 @@ const UpdateProduct = ({ productId }) => {
   if (error) return <div>Error loading product</div>;
 
   return (
-    <Form className="update-form" onSubmit={handleSubmit}>
+    <Form className="standard-form" onSubmit={handleSubmit}>
       <Form.Field
         control={Input}
         label='Title'
