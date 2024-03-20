@@ -39,11 +39,20 @@ const updateProduct = async (productId, product) => {
   }
 };
 
+const deleteProduct = async (productId) => {
+    try {
+        await axios.delete(`${BASE_URL}/${productId}`);
+    } catch (error) {
+        throw error; 
+    }
+};
+
     return {
         addProduct,
         getAllProducts,
         getProductById,
-        updateProduct
+        updateProduct,
+        deleteProduct
     };
 };
 
