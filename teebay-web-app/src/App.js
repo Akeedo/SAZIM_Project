@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-import CreateProduct from './features/components/create-product';
-import GetAllProduct from './features/components/get-all-product';
-import UpdateProduct from './features/components/update-product';
+import CreateProduct from './features/product/components/create-product';
+import GetAllProduct from './features/product/components/get-all-product';
+import UpdateProduct from './features/product/components/update-product';
 
 function App() {
   return (
