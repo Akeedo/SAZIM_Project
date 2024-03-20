@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import ProductDataService from '../services/product-data-service';
-import ProductModelService from '../services/product-modal-service';
+import ProductModelService from '../services/product-model-service';
 import ProductForm from '../views/product-form';
 
 const CreateProduct = () => {
