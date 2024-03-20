@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 import CreateProduct from './features/product/components/create-product';
 import GetAllProduct from './features/product/components/get-all-product';
 import UpdateProduct from './features/product/components/update-product';
+import CreateUser from './auth/user/components/create-user';
+
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
           <Route path="/create-product" element={<CreateProduct />} />
           <Route path="/" element={<GetAllProduct />} />
           <Route path="/update-product/:productId" element={<UpdateProduct />} />
+          <Route path="/create-user" element={<CreateUser />} />
         </Routes>
     </Router>
   </div>
