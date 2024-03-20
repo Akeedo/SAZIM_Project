@@ -1,80 +1,48 @@
 import React, { useState } from 'react';
-import { Button, Form, Input, TextArea, Dropdown } from 'semantic-ui-react';
+
 import axios from 'axios';
+
+import ProductDataService from '../services/product-data-service';
+import ProductModelService from '../services/product-modal-service';
+import ProductForm from '../views/product-form';
 
 const CreateProduct = () => {
 
   const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const initialProduct = ProductModelService.setDefaultProduct();
 
   const [product, setProduct] = useState({
-    title: '',
-    category: '',
-    description: '',
-    price: ''
+    title: initialProduct.title,
+    category: initialProduct.category,
+    description: initialProduct.description,
+    price: initialProduct.price
   });
 
-  const categoriesOptions = [
-    { key: 'electronics', value: 'electronics', text: 'Electronics' },
-    { key: 'furniture', value: 'furniture', text: 'Furniture' },
-    { key: 'home_appliances', value: 'home_appliances', text: 'Home Appliances' },
-    { key: 'sporting_goods', value: 'sporting_goods', text: 'Sporting Goods' },
-    { key: 'outdoor', value: 'outdoor', text: 'Outdoor' },
-    { key: 'toys', value: 'toys', text: 'Toys' },
-  ];
+  const categoriesOptions = ProductModelService.getCategories();
 
-  const handleChange = (e, { name, value }) => setProduct({ ...product, [name]: value });
+
+  const handleChange = (e, { name, value }) => {
+    const updatedProductField = ProductModelService.updateProductField(product, name, value);
+    setProduct(updatedProductField);
+};
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(`https://65f88c14df151452460fa890.mockapi.io/api/v1/products`, product);
+      const response = await ProductDataService.addProduct(product);
       console.log(response.data);
-      // Handle response or success side effects here
     } catch (error) {
       console.error("There was an error posting the data", error);
     }
   };
 
   return (
-    <Form className="standard-form" onSubmit={handleSubmit}>
-      <Form.Field
-        control={Input}
-        label='Title'
-        placeholder='Title'
-        name='title'
-        value={product.title}
-        onChange={handleChange}
+    <ProductForm
+        product={product}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        categoriesOptions={categoriesOptions}
       />
-      <Form.Field
-        control={Dropdown}
-        label='Category'
-        placeholder='Category'
-        fluid
-        selection
-        options={categoriesOptions}
-        name='category'
-        value={product.category}
-        onChange={handleChange}
-      />
-      <Form.Field
-        control={TextArea}
-        label='Description'
-        placeholder='Description'
-        name='description'
-        value={product.description}
-        onChange={handleChange}
-      />
-      <Form.Field
-        control={Input}
-        label='Price'
-        placeholder='Price'
-        name='price'
-        value={product.price}
-        type='number'
-        onChange={handleChange}
-      />
-      <Button type='submit'>Submit</Button>
-    </Form>
   );
 };
 
