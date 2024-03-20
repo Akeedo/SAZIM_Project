@@ -1,26 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { Table, Button  } from 'semantic-ui-react';
-import { useNavigate } from 'react-router-dom';
 
-function ProductTable({ products }) {
-    const navigate = useNavigate();
+import ProductDataService from '../services/product-data-service';
 
-    const handleUpdateClick = (productId) => {
-        navigate(`/update-product/${productId}`);
-    };
+function ProductTable({ products, onDelete, handleUpdateClick }) {
+   
 
-    const onDelete = (id) => {
-        axios.delete(`https://65f88c14df151452460fa890.mockapi.io/api/v1/products/${id}`)
-        .then(() => {
-            reload();
-        })
-    }
     
-    const reload = () => {
-        window.location.reload();
-    }
-
+    
+  
     return (
         <div>
         <Table singleLine>
