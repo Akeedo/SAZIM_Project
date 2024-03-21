@@ -163,8 +163,49 @@ app.post('/users', [
         password: hashedPassword,
       },
     });
+app.post('/products', [
+  authenticateToken, // This route is now protected
+  // Validation and sanitization rules
+  body('title').trim().escape(),
+  body('description').trim().escape(),
+  body('price').isDecimal({ decimal_digits: '2', }).withMessage('Price must be a valid decimal with two decimal places.'),
+  body('category').trim().escape(),
 
-    res.status(201).json(newUser);
+], async (req, res) => {
+  // Check for validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  // Extract sanitized values
+  const { title, description, price, category } = req.body;
+
+  try {
+  
+    const titleExists = await prisma.products.findFirst({
+      where: {
+        title: title,
+      },
+    });
+
+    if (titleExists) {
+      return res.status(400).send({ message: "Title already registered." });
+    }
+    // Proceed to create the new user with sanitized inputs
+    const newProduct = await prisma.products.create({
+      data: {
+        title:title, 
+        description:description, 
+        price:price, 
+        category:category,
+      },
+    });
+    res.status(201).send(newProduct);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: "An error occurred while creating the user." });
