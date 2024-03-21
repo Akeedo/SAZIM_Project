@@ -236,6 +236,26 @@ app.get('/products/:id', authenticateToken, async (req, res) => {
   }
 });
 
+app.delete('/products/:id', authenticateToken, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedProduct = await prisma.products.delete({
+      where: {
+        id: parseInt(id), // Ensure the id is an integer, as Prisma expects
+      },
+    });
+
+    res.status(200).json({ message: "Product deleted successfully.", deletedProduct });
+  } catch (error) {
+    // Prisma will throw an error if the product to be deleted doesn't exist
+    if (error.code === 'P2025') {
+      return res.status(404).send({ message: "Product not found." });
+    }
+    res.status(400).send(error);
+  }
+});
+
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: "An error occurred while creating the user." });
