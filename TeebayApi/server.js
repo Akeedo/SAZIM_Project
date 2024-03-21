@@ -206,6 +206,17 @@ app.post('/products', [
     res.status(400).send(error);
   }
 });
+
+app.get('/products', authenticateToken, async (req, res) => {
+  try {
+    const products = await prisma.products.findMany();
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+app.get('/products/:id', authenticateToken, async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: "An error occurred while creating the user." });
