@@ -1,14 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
 const cors = require('cors');
 const Joi = require('joi');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-
-require('./database');
 const User = require('./models/User');
 const JWT_SECRET = process.env.JWT_SECRET || 'ef3d171d0fb5328c8c12f188e34b403a94bd4cf9600e34ac664280eebb6a1947'; // It's better to use an environment variable for the secret key
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || '3c0273f989ec034f8cb204e53bcac115433f8e64a3ba561131eb109f23ecfa87';
@@ -78,25 +78,33 @@ app.post('/login', [
   const { email, password } = req.body;
 
   try {
-    // Check if user exists with the given email
-    const user = await User.findOne({ email });
+    console.log(`Type of for email: '${typeof email}'`);
+    // Check if a user exists with the given email
+
+    const user = await prisma.users.findFirst({
+      where: {
+        email: email,
+      },
+    });
+    
     if (!user) {
       return res.status(400).send({ message: "User not found." });
     }
 
     // Compare the provided password with the hashed password in the database
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).send({ message: "Invalid credentials." });
-    }
+    // const isMatch = await bcrypt.compare(password, user.password);
+    // if (!isMatch) {
+    //   return res.status(400).send({ message: "Invalid credentials." });
+    // }
 
   // User authentication successful, issue a token
   const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' }); // Adjust expiresIn as needed
   const refreshToken = jwt.sign({ userId: user._id }, JWT_REFRESH_SECRET, { expiresIn: '1h' }); // Adjust expiresIn as needed
 
     // If password matches, login successful
-    res.status(200).send({ message: "Login successful", user: { id: user.id, userName: user.userName, email: user.email }, token, refreshToken });
+    res.status(200).send({ message: "Login successful", user: { id: user.id, firstName: user.first_name, lastName:user.last_name, email: user.email }, token, refreshToken });
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 });
@@ -114,46 +122,55 @@ app.post('/refresh-token', (req, res) => {
   });
 });
 
-// CREATE
 app.post('/users', [
-    authenticateToken, // This route is now protected
-    // Validation and sanitization rules
-    body('userName').trim().escape(),
-    body('email').isEmail().normalizeEmail(),
-    body('password').trim().escape(),
-  ], async (req, res) => {
-    // Check for validation errors
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+  authenticateToken, 
+  body('firstName').trim().escape(),
+  body('lastName').trim().escape(),
+  body('email').isEmail().normalizeEmail(),
+  body('password').trim().escape(),
+  body('address').optional().trim().escape(),
+  body('phoneNumber').optional().trim().escape(),
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  // Extract sanitized values including the optional address and phoneNumber
+  const { firstName, lastName, email, password, address, phoneNumber } = req.body;
+
+  try {
+    const emailExists = await prisma.users.findUnique({
+      where: { email },
+    });
+
+    if (emailExists) {
+      return res.status(400).send({ message: "Email already registered." });
     }
-  
-    // Extract sanitized values
-    const { userName, email, password } = req.body;
-  
-    try {
-      // Check if userName or email already exists
-      const userNameExists = await User.findOne({ userName });
-      const emailExists = await User.findOne({ email });
-  
-      if (userNameExists) {
-        return res.status(400).send({ message: "Username already taken." });
-      }
-      if (emailExists) {
-        return res.status(400).send({ message: "Email already registered." });
-      }
+
     // Hash password
-    const saltRounds = 10; // Or another number you deem secure
+    const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-      // Proceed to create the new user with sanitized inputs
-      const newUser = new User({ userName, email, password: hashedPassword });
-      await newUser.save();
-      res.status(201).send(newUser);
-    } catch (error) {
-      res.status(400).send(error);
-    }
-  });
+    // Proceed to create the new user with all provided and sanitized inputs
+    const newUser = await prisma.user.create({
+      data: {
+        firstName,
+        lastName,
+        address, // Included address
+        phoneNumber, // Included phoneNumber
+        email,
+        password: hashedPassword,
+      },
+    });
+
+    res.status(201).json(newUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "An error occurred while creating the user." });
+  }
+});
+
 
  
 // READ (all users)
