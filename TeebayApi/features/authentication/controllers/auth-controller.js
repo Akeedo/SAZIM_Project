@@ -36,6 +36,20 @@ const AuthController = {
       res.status(500).send(error);
     }
   },
+
+  refreshToken: async (req, res) => {
+    const refreshToken = req.body.token;
+    if (!refreshToken) {
+      return res.status(401).send('Refresh Token Required');
+    }
+
+    try {
+      const token = await AuthService.refreshToken(refreshToken);
+      res.json({ token });
+    } catch (error) {
+      res.status(403).send(error);
+    }
+  },
 };
 
 module.exports = AuthController;
