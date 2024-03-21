@@ -217,6 +217,25 @@ app.get('/products', authenticateToken, async (req, res) => {
 });
 
 app.get('/products/:id', authenticateToken, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const product = await prisma.products.findUnique({
+      where: {
+        id: parseInt(id), // Ensure the id is an integer, as Prisma expects
+      },
+    });
+
+    if (product) {
+      res.status(200).json(product);
+    } else {
+      res.status(404).send({ message: "Product not found." });
+    }
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
   } catch (error) {
     console.error(error);
     res.status(500).send({ message: "An error occurred while creating the user." });
