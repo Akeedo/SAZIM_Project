@@ -123,46 +123,56 @@ app.post('/refresh-token', (req, res) => {
 });
 
 app.post('/users', [
-  authenticateToken, 
+  authenticateToken, // This route is now protected
+  // Validation and sanitization rules
   body('firstName').trim().escape(),
   body('lastName').trim().escape(),
+  body('address').trim().escape(),
+  body('phoneNumber').trim().escape(),
   body('email').isEmail().normalizeEmail(),
   body('password').trim().escape(),
-  body('address').optional().trim().escape(),
-  body('phoneNumber').optional().trim().escape(),
 ], async (req, res) => {
+  // Check for validation errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  // Extract sanitized values including the optional address and phoneNumber
-  const { firstName, lastName, email, password, address, phoneNumber } = req.body;
+  // Extract sanitized values
+  const { firstName, lastName, address, phoneNumber, email, password } = req.body;
 
   try {
-    const emailExists = await prisma.users.findUnique({
-      where: { email },
+  
+    const emailExists = await prisma.users.findFirst({
+      where: {
+        email: email,
+      },
     });
 
     if (emailExists) {
       return res.status(400).send({ message: "Email already registered." });
     }
+  // Hash password
+  const saltRounds = 10; // Or another number you deem secure
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Hash password
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    // Proceed to create the new user with all provided and sanitized inputs
-    const newUser = await prisma.user.create({
+    // Proceed to create the new user with sanitized inputs
+    const newUser = await prisma.users.create({
       data: {
-        firstName,
-        lastName,
-        address, // Included address
-        phoneNumber, // Included phoneNumber
-        email,
+        first_name:firstName, 
+        last_name:lastName, 
+        address:address, 
+        phone_number:phoneNumber, 
+        email:email, 
         password: hashedPassword,
       },
     });
+    res.status(201).send(newUser);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 app.post('/products', [
   authenticateToken, // This route is now protected
   // Validation and sanitization rules
@@ -353,6 +363,8 @@ app.delete('/users/:id', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
