@@ -256,12 +256,53 @@ app.delete('/products/:id', authenticateToken, async (req, res) => {
   }
 });
 
+app.put('/products/:id', [
+  authenticateToken, // This route is now protected
+  // Validation and sanitization rules
+  body('title').trim().escape(),
+  body('description').trim().escape(),
+  body('price').isDecimal({ decimal_digits: '2', }).withMessage('Price must be a valid decimal with two decimal places.'),
+  body('category').trim().escape(),
+], async (req, res) => {
+  // Check for validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { id } = req.params;
+  const { title, description, price, category } = req.body;
+
+  try {
+    // Check if the product exists
+    const existingProduct = await prisma.products.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    if (!existingProduct) {
+      return res.status(404).send({ message: "Product not found." });
+    }
+
+    // Update the product with provided data
+    const updatedProduct = await prisma.products.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        title, 
+        description, 
+        price: parseFloat(price), // Ensure the price is a float
+        category,
+      },
+    });
+
+    res.status(200).json(updatedProduct);
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ message: "An error occurred while creating the user." });
+    res.status(400).send(error);
   }
 });
-
 
  
 // READ (all users)
