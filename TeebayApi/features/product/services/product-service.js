@@ -11,6 +11,10 @@ const ProductService = {
         return await ProductModel.create(productData);
     },
 
+    async getAllProducts() {
+        return await ProductModel.findAll();
+      },
+
   // Here you can add more business logic methods, like updating or deleting products
 };
 
