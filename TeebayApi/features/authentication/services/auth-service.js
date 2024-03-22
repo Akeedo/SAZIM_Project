@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const JWTConfig = require('../../../config/JWTConfig'); // Adjust the path as needed
-const UserModel = require('../models/user-model');
+const UserModel = require('../../user/models/user-model');
 
 const AuthService = {
     refreshToken: (refreshToken) => {
