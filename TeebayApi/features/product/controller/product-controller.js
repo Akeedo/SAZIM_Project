@@ -23,7 +23,7 @@ const ProductController = {
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
-      },
+    },
 
     async getProductById(req, res) {
         const { id } = req.params;
