@@ -24,6 +24,54 @@ const ProductController = {
             res.status(400).json({ message: error.message });
         }
       },
+
+    async getProductById(req, res) {
+        const { id } = req.params;
+        const result = await ProductService.getProductById(id);
+    
+        if (result.error) {
+            res.status(result.statusCode).send({ message: result.message });
+        } else {
+            res.status(result.statusCode).json(result.product);
+        }
+    },
+
+    async deleteProduct(req, res) {
+        const { id } = req.params;
+        
+        try {
+            const result = await ProductService.deleteProduct(id);
+            if (result.success) {
+                res.status(200).json({ message: "Product deleted successfully.", product: result.deletedProduct });
+            } else {
+                res.status(result.statusCode).send({ message: result.message });
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: "An error occurred while deleting the product.", error: error.message });
+        }
+    },
+
+    async updateProduct(req, res) {
+        const { id } = req.params;
+        const productData = req.body;
+        
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        const result = await ProductService.updateProduct(id, productData);
+        res.status(201).json({ message: "Successful " + result.title + " updated."} );
+        if (result.error) {
+            res.status(result.statusCode).json({ message: result.message });
+        } else {
+            res.status(result.statusCode).json(result.updatedProduct);
+        }
+    },
+
+
+        async buyProduct(req, res) {
 };
 
 module.exports = ProductController;
