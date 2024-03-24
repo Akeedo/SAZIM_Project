@@ -31,6 +31,13 @@ const ProductModel = {
         });
     },
 
+    async updateById(id, productData) {
+      return await prisma.products.update({
+        where: { id },
+        data: productData,
+      });
+    },
+
     async titleExists(title) {
       try {
         const product = await prisma.products.findFirst({
