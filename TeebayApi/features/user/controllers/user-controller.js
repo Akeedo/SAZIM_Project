@@ -18,6 +18,27 @@ const UserController = {
         }
     },
 
+    async fetchUserTransactionsController(req, res) {
+        const userId = parseInt(req.params.userId); // Assuming the user ID comes from the route parameter
+    
+        if (isNaN(userId)) {
+            return res.status(400).json({ message: "Invalid user ID." });
+        }
+    
+        try {
+            const result = await UserService.fetchUserTransactions(userId);
+    
+            if (result.error) {
+                return res.status(400).json({ message: result.message });
+            }
+            else{
+                return res.status(200).json(result);
+            }
+        } catch (error) {
+            res.status(500).json({ message: "An error occurred while fetching the transactions.", error: error.message });
+        }
+    },
+
 };
 
 module.exports = UserController;
