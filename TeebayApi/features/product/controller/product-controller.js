@@ -72,6 +72,41 @@ const ProductController = {
 
 
         async buyProduct(req, res) {
+            const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+            }
+            try {
+                const transactionType = 'buy';
+                const result = await ProductService.productTransaction(req.body, transactionType);
+                res.status(201).json({ message : result.message});
+            } catch (error) {
+                res.status(400).json({ message: "Error buying product", error: error.message });
+            }
+        },
+
+        async rentProduct(req, res) {
+            const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+            }
+            try {
+                const { userId, productId, amount, rentFrom, rentTo } = req.body;
+                const transactionType = 'rent';
+                const transactionResult = await ProductService.productTransaction(userId, productId, amount, transactionType);
+                if(transactionResult.error) {
+                    return res.status(400).json({ message: transactionResult.message });
+                } else {
+                const result = await ProductService.rentProduct(transactionResult.transaction, rentFrom, rentTo);
+                if (result.error === false) {
+                        return res.status(201).json({ message: result.message });
+                    }
+                }
+              } catch (error) {
+                res.status(400).json({ message: "Error rental product", error: error.message });
+            }
+        },
+    
 };
 
 module.exports = ProductController;
