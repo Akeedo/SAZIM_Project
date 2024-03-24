@@ -64,6 +64,26 @@ const ProductModel = {
       });
     },
 
+    async getUserTransactionsWithProducts(userId) {
+      return await prisma.transactions.findMany({
+            where: { user_id: userId },
+            select: {
+              product: {
+                select: {
+                  id: true,
+                  title: true,
+                  description: true,
+                  category: true,
+                  price: true,
+                },
+              },
+              transaction_type: true,
+            },
+            orderBy: { date: 'desc' },
+          });
+        },
+    
+
 };
 
 module.exports = ProductModel;
