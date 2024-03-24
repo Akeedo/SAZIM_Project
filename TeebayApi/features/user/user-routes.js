@@ -5,5 +5,6 @@ const { createUserValidationRules, validate } = require('./validations/user-vali
 const userController = require('./controllers/user-controller');
 
 router.post('/', [authenticateToken, createUserValidationRules(), validate], userController.createUser);
+router.get('/:userId/transactions', userController.fetchUserTransactionsController);
 
 module.exports = router;
