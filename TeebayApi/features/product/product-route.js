@@ -9,5 +9,8 @@ console.log('authToken', authenticateToken);
 
 router.post('/', [authenticateToken, productValidationRules(), ProductController.createProduct]);
 router.get('/', authenticateToken, ProductController.getProducts);
+router.get('/:id', authenticateToken, ProductController.getProductById);
+router.delete('/:id', authenticateToken, ProductController.deleteProduct);
+router.put('/:id', [ authenticateToken, productValidationRules(), ProductController.updateProduct]);
 
 module.exports = router;
