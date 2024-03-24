@@ -13,7 +13,7 @@ const ProductService = {
 
     async getAllProducts() {
         return await ProductModel.findAll();
-      },
+    },
 
     async getProductById(id) {
         
