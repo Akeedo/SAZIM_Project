@@ -93,16 +93,16 @@ const ProductController = {
             try {
                 const { userId, productId, amount, rentFrom, rentTo } = req.body;
                 const transactionType = 'rent';
-                const transactionResult = await ProductService.productTransaction(userId, productId, amount, transactionType);
-                if(transactionResult.error) {
-                    return res.status(400).json({ message: transactionResult.message });
+                const rentResult = await ProductService.productTransaction(userId, productId, amount, transactionType);
+                if(rentResult.error) {
+                    return res.status(400).json({ message: rentResult.message });
                 } else {
-                const result = await ProductService.rentProduct(transactionResult.transaction, rentFrom, rentTo);
+                const result = await ProductService.rentProduct(rentResult.transaction, rentFrom, rentTo);
                 if (result.error === false) {
                         return res.status(201).json({ message: result.message });
                     }
                 }
-              } catch (error) {
+            } catch (error) {
                 res.status(400).json({ message: "Error rental product", error: error.message });
             }
         },
