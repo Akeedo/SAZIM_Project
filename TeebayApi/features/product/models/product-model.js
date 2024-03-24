@@ -52,6 +52,18 @@ const ProductModel = {
       }
     },
 
+    async createTransaction(data) {
+      return await prisma.transactions.create({
+        data,
+      });
+    },
+
+    async createRental(data){
+      return await prisma.rentals.create({
+        data,
+      });
+    },
+
 };
 
 module.exports = ProductModel;
