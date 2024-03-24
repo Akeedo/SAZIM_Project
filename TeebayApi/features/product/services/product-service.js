@@ -132,12 +132,7 @@ const ProductService = {
         // Depending on your error handling policy, you may choose to throw the error instead
         // throw error;
     }
-}
-,
-
-
-    
-    
+},
 
 };
 
