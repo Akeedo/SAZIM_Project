@@ -13,12 +13,7 @@ const UpdateProduct = () => {
 
   const initialProduct = ProductModelService.setDefaultProduct();
 
-  const [product, setProduct] = useState({
-    title: initialProduct.title,
-    category: initialProduct.category,
-    description: initialProduct.description,
-    price: initialProduct.price
-  });
+  const [product, setProduct] = useState({ ...initialProduct });
 
   const categoriesOptions =  ProductModelService.getCategories();
 
