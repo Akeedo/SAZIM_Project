@@ -1,11 +1,11 @@
-import axios from 'axios';
+
+import axiosInstance from '../../../utils/axiosInstance';
 
 const ProductDataService = () => {
-    const BASE_URL = 'https://65f88c14df151452460fa890.mockapi.io/api/v1/products';
 
     const addProduct = async (product) => {
         try {
-            const response = await axios.post(BASE_URL, product);
+            const response = await axiosInstance({ method: 'POST', url: '/products', data:product }).then((response) => response);
             return response.data;
         } catch (error) {
             throw error;
@@ -14,7 +14,7 @@ const ProductDataService = () => {
 
         const getAllProducts = async () => {
         try {
-            const response = await axios.get(BASE_URL);
+            const response = await axiosInstance({ method: 'GET', url: '/products' }).then((response) => response);
             return response.data;
         } catch (error) {
             throw error;
@@ -23,7 +23,7 @@ const ProductDataService = () => {
 
     const getProductById = async (productId) => {
         try {
-            const response = await axios.get(`${BASE_URL}/${productId}`);
+            const response = await axiosInstance({ method: 'GET', url: `/products/${productId}` }).then((response) => response);
             return response.data;
         } catch (error) {
             throw error;
@@ -32,18 +32,27 @@ const ProductDataService = () => {
 
 const updateProduct = async (productId, product) => {
   try {
-      const response = await axios.put(`${BASE_URL}/${productId}`, product);
-      return response.data; // Returns the updated product data
+    const response = await axiosInstance({ method: 'PUT', url: `/products/${productId}`, data: product }).then((response) => response);
+      return response.data;
   } catch (error) {
-      throw error; // Rethrows the error to be caught by the caller
+      throw error; 
   }
 };
 
 const deleteProduct = async (productId) => {
     try {
-        await axios.delete(`${BASE_URL}/${productId}`);
+        await axiosInstance({ method: 'DELETE', url: `/products/${productId}` }).then((response) => response);
     } catch (error) {
         throw error; 
+    }
+};
+
+const rentProduct = async (rentProduct) => {
+    try {
+        const response = await axiosInstance({ method: 'POST', url: '/products/rent-product', data:rentProduct }).then((response) => response);
+        return response.data;
+    } catch (error) {
+        throw error;
     }
 };
 
@@ -52,7 +61,8 @@ const deleteProduct = async (productId) => {
         getAllProducts,
         getProductById,
         updateProduct,
-        deleteProduct
+        deleteProduct,
+        rentProduct
     };
 };
 
