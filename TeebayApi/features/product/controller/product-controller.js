@@ -53,6 +53,7 @@ const ProductController = {
     },
 
     async updateProduct(req, res) {
+        try{
         const { id } = req.params;
         const productData = req.body;
         
@@ -63,10 +64,8 @@ const ProductController = {
 
         const result = await ProductService.updateProduct(id, productData);
         res.status(201).json({ message: "Successful " + result.title + " updated."} );
-        if (result.error) {
-            res.status(result.statusCode).json({ message: result.message });
-        } else {
-            res.status(result.statusCode).json(result.updatedProduct);
+        } catch(error){
+            res.status(400).json({ message: error.message });
         }
     },
 
