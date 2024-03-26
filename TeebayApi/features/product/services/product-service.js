@@ -70,9 +70,7 @@ const ProductService = {
     },
 
     async productTransaction(userId, productId, amount, transactionType) {
-        // Logic to check product availability can be added here
         try {
-            // Assume ProductModel.createTransaction is correctly defined to handle transaction creation
             const transaction = await ProductModel.createTransaction({
                 product_id: productId,
                 user_id: userId,
