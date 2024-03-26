@@ -4,12 +4,8 @@ import { Table, Button  } from 'semantic-ui-react';
 
 import ProductDataService from '../services/product-data-service';
 
-function ProductTable({ products, onDelete, handleUpdateClick }) {
+function ProductTable({ products, onDelete, handleUpdateClick, handleDetailClick }) {
    
-
-    
-    
-  
     return (
         <div>
         <Table singleLine>
@@ -21,6 +17,7 @@ function ProductTable({ products, onDelete, handleUpdateClick }) {
                 <Table.HeaderCell>Price</Table.HeaderCell>
                 <Table.HeaderCell>Update</Table.HeaderCell>
                 <Table.HeaderCell>Delete</Table.HeaderCell>
+                <Table.HeaderCell>Detail</Table.HeaderCell>
             </Table.Row>
             </Table.Header>
 
@@ -36,6 +33,9 @@ function ProductTable({ products, onDelete, handleUpdateClick }) {
                 </Table.Cell>
                 <Table.Cell>
                     <Button onClick={() => onDelete(product.id)}>Delete</Button>
+                </Table.Cell>
+                <Table.Cell>
+                    <Button onClick={() => handleDetailClick(product.id)}>Detail</Button>
                 </Table.Cell>
                 </Table.Row>
             ))}
