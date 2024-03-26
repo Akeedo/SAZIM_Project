@@ -56,13 +56,23 @@ const rentProduct = async (rentProduct) => {
     }
 };
 
+const buyProduct = async (buyProduct) => {
+    try {
+        const response = await axiosInstance({ method: 'POST', url: '/products/buy-product', data:buyProduct }).then((response) => response);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
+
     return {
         addProduct,
         getAllProducts,
         getProductById,
         updateProduct,
         deleteProduct,
-        rentProduct
+        rentProduct,
+        buyProduct
     };
 };
 
