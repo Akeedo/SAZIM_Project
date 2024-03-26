@@ -86,25 +86,33 @@ const ProductController = {
 
         async rentProduct(req, res) {
             const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
             }
+        
             try {
                 const { userId, productId, amount, rentFrom, rentTo } = req.body;
                 const transactionType = 'rent';
+                
                 const rentResult = await ProductService.productTransaction(userId, productId, amount, transactionType);
-                if(rentResult.error) {
+                
+                if (rentResult.error) {
                     return res.status(400).json({ message: rentResult.message });
-                } else {
-                const result = await ProductService.rentProduct(rentResult.transaction, rentFrom, rentTo);
-                if (result.error === false) {
-                        return res.status(201).json({ message: result.message });
-                    }
                 }
+                
+                const result = await ProductService.rentProduct(rentResult.transaction, rentFrom, rentTo);
+                
+                if (result.error === false) {
+                    return res.status(201).json({ message: result.message });
+                }
+                
+                // Handle case where result.error is not false (assuming it means an error occurred)
+                return res.status(400).json({ message: "An error occurred during the rental process." });
             } catch (error) {
-                res.status(400).json({ message: "Error rental product", error: error.message });
+                return res.status(500).json({ message: "Error rental product", error: error.message });
             }
-        },
+        }
+        
     
 };
 
