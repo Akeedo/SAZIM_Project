@@ -13,6 +13,10 @@ function GetAllProduct(){
         navigate(`/update-product/${productId}`);
     };
 
+    const handleDetailClick = (productId) => {
+        navigate(`/product-detail/${productId}`);
+    };
+
     const [APIData, setAPIData] = useState([]);
    
     useEffect(() => {
@@ -46,7 +50,7 @@ function GetAllProduct(){
     return (
         <div>
             <h2>All Products</h2>
-            <ProductTable products={APIData} onDelete={onDelete} handleUpdateClick={handleUpdateClick} />
+            <ProductTable products={APIData} onDelete={onDelete} handleUpdateClick={handleUpdateClick} handleDetailClick={handleDetailClick} />
         </div>
     );
 }
