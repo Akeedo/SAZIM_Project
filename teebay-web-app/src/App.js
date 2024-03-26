@@ -9,7 +9,7 @@ import GetAllProduct from './features/product/components/get-all-product';
 import UpdateProduct from './features/product/components/update-product';
 import CreateUser from './auth/user/components/create-user';
 import Login from './auth/login/components/login';
-import ProductDetail from './features/product/components/product-detail';
+import DetailProduct from './features/product/components/detail-product';
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
           <Route path="/update-product/:productId" element={<UpdateProduct />} />
           <Route path="/create-user" element={<CreateUser />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/product-detail" element={<ProductDetail />} />
+          <Route path="/product-detail/:productId" element={<DetailProduct />} />
         </Routes>
     </Router>
   </div>
