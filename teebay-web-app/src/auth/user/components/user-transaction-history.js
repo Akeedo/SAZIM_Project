@@ -1,46 +1,33 @@
-
-import React, {useEffect, useState } from 'react';
-
+import React from 'react';
+import { useQuery } from '@apollo/client';
 import TransactionTemplate from '../views/transaction-template';
-import UserDataService from '../services/user-data-service';
+import  Queries  from '../../../shared/queries'; 
 
-function UserTransactionHistory(){
+function UserTransactionHistory() {
+  const user = localStorage.getItem('user');
+  const userObject = JSON.parse(user);
+  const userId = userObject?.id;
 
+  const { loading, error, data } = useQuery(Queries.GET_USER_TRANSACTIONS_WITH_PRODUCTS, {
+    variables: { userId },
+  });
 
-    const [buyTransactions, setBuyTransactions] = useState([]);
-    const [rentTransactions, setRentTransactions] = useState([]);
+  if (loading) return <p>Loading transactions...</p>;
+  if (error) return <p>Error loading transactions: {error.message}</p>;
 
-    useEffect(() => {
-        const getProducts = async () => {
-            try {
-                const user = localStorage.getItem('user');
-                const userObject = JSON.parse(user);
-                const userId = userObject.id;
-                const data = await UserDataService.getAllUserTransactions(userId);
-                const buyTransactionsArray = data.filter(data => data.transaction_type === "buy");
-                const rentTransactionsArray = data.filter(data => data.transaction_type === "rent");
-                setBuyTransactions(buyTransactionsArray);
-                setRentTransactions(rentTransactionsArray);
-            } catch (error) {
-                console.error("Failed to fetch products:", error);
-            }
-        };
+  // Filter transactions by type after fetching
+  const buyTransactions = data?.userTransactionsWithProducts.filter(transaction => transaction.transaction_type === "buy") || [];
+  const rentTransactions = data?.userTransactionsWithProducts.filter(transaction => transaction.transaction_type === "rent") || [];
 
-        getProducts();
-    }, []); 
-
-   
-
-
-    return (
-        <div>
-            <h2>All The Transaction</h2>
-            <TransactionTemplate 
-                buyTransactions={buyTransactions} 
-                rentTransactions={rentTransactions} 
-            />
-        </div>
-    );
+  return (
+    <div>
+      <h2>All The Transaction</h2>
+      <TransactionTemplate 
+          buyTransactions={buyTransactions} 
+          rentTransactions={rentTransactions} 
+      />
+    </div>
+  );
 }
 
 export default UserTransactionHistory;
