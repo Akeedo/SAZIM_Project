@@ -1,36 +1,23 @@
-
-import React, {useEffect, useState } from 'react';
-import ProductTable from '../views/product-table';
-import ProductDataService from '../services/product-data-service';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useQuery, gql } from '@apollo/client';
+import ProductTable from '../views/product-table';
+import  Queries  from '../../../shared/queries'; 
+import ProductDataService from '../services/product-data-service';
 
-function GetAllProduct(){
 
-    const navigate = useNavigate();
 
-    const handleUpdateClick = (productId) => {
-        navigate(`/update-product/${productId}`);
-    };
+function GetAllProduct() {
+  const navigate = useNavigate();
+  const { loading, error, data } = useQuery(Queries.GET_PRODUCTS);
 
-    const handleDetailClick = (productId) => {
-        navigate(`/product-detail/${productId}`);
-    };
+  const handleUpdateClick = (productId) => {
+    navigate(`/update-product/${productId}`);
+  };
 
-    const [APIData, setAPIData] = useState([]);
-   
-    useEffect(() => {
-        const getProducts = async () => {
-            try {
-                const data = await ProductDataService.getAllProducts();
-                setAPIData(data);
-            } catch (error) {
-                console.error("Failed to fetch products:", error);
-            }
-        };
-
-        getProducts();
-    }, []); 
+  const handleDetailClick = (productId) => {
+    navigate(`/product-detail/${productId}`);
+  };
 
     const onDelete = (id) => {
         ProductDataService.deleteProduct(id)
@@ -47,12 +34,13 @@ function GetAllProduct(){
     }
 
 
-    return (
-        <div>
-            <h2>All Products</h2>
-            <ProductTable products={APIData} onDelete={onDelete} handleUpdateClick={handleUpdateClick} handleDetailClick={handleDetailClick} />
-        </div>
-    );
+  return (
+    <div>
+      <h2>All Products</h2>
+      {/* Ensure ProductTable can handle the data structure */}
+      <ProductTable products={data.products} onDelete={onDelete} handleUpdateClick={handleUpdateClick} handleDetailClick={handleDetailClick} />
+    </div>
+  );
 }
 
 export default GetAllProduct;
