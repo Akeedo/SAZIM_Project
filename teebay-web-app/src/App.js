@@ -10,6 +10,7 @@ import UpdateProduct from './features/product/components/update-product';
 import CreateUser from './auth/user/components/create-user';
 import Login from './auth/login/components/login';
 import DetailProduct from './features/product/components/detail-product';
+import UserTransactionHistory from './auth/user/components/user-transaction-history';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/create-user" element={<CreateUser />} />
           <Route path="/login" element={<Login />} />
           <Route path="/product-detail/:productId" element={<DetailProduct />} />
+          <Route path="/user-product-transaction" element={<UserTransactionHistory />} />
         </Routes>
     </Router>
   </div>
