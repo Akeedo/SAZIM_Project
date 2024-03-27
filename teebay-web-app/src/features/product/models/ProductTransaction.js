@@ -2,14 +2,16 @@ const ProductTransaction = ({
     productId = null, 
     userId = null, 
     amount = 0, 
-    rentFrom = '', // Default to an empty string if not provided
-    rentTo = '' // Default to an empty string if not provided
+    rentFrom = '', 
+    rentTo = '',
+    transactionType = null,
 } = {}) => ({
     productId,
     userId,
     amount,
-    rentFrom: rentFrom ? new Date(rentFrom) : null, // Convert to Date object or null if not provided
-    rentTo: rentTo ? new Date(rentTo) : null, // Convert to Date object or null if not provided
+    rentFrom: rentFrom ? new Date(rentFrom) : null, 
+    rentTo: rentTo ? new Date(rentTo) : null, 
+    transactionType: transactionType ? transactionType : null,
 });
 
 export default ProductTransaction;
