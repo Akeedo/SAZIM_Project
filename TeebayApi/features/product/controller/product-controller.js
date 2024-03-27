@@ -77,7 +77,8 @@ const ProductController = {
             }
             try {
                 const transactionType = 'buy';
-                const result = await ProductService.productTransaction(req.body, transactionType);
+                const { userId, productId, amount, rentFrom, rentTo } = req.body;
+                const result = await ProductService.productTransaction(userId, productId, amount, transactionType);
                 res.status(201).json({ message : result.message});
             } catch (error) {
                 res.status(400).json({ message: "Error buying product", error: error.message });
