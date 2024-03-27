@@ -17,8 +17,24 @@ const setRentTransaction = async (productId, amount, rentFrom, rentTo) => {
     }
 };
 
+const setBuyTransaction = async (productId, amount) => {
+    try{
+    const user = localStorage.getItem('user');
+    const userObject = JSON.parse(user);
+    const userId = userObject.id;
+    const productIdToInteger = parseInt(productId, 10);
+    amount = parseFloat(amount); 
+    const productTransaction = ProductTransaction({productId: productIdToInteger, amount, userId});
+    return productTransaction;
+    }catch(error){
+        console.error('There was an error setting the product transaction', error);
+        throw error;
+    }
+};
+
 return {
     setRentTransaction,
+    setBuyTransaction
 };
 
 }
