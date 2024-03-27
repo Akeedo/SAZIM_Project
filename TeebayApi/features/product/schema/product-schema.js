@@ -13,6 +13,7 @@ const productTypeDefs = gql`
   extend type Query {
     products: [Product!]!
     product(id: ID!): Product
+    userTransactionsWithProducts(userId: ID!): [Transaction!]!
   }
 
   extend type Mutation {
