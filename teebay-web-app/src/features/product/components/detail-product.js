@@ -4,7 +4,7 @@ import ProductDataService from '../services/product-data-service';
 import ProductDescription from '../views/product-description';
 import ProductModal from '../views/product-model';
 import ProductTransactionModelService from '../services/product-transaction-model-service';
-
+import ConfirmationModal from '../../../shared/confirmation-modal';
 
 // Functional Component
 const DetailProduct = () => {
@@ -47,13 +47,22 @@ const DetailProduct = () => {
 
   const handleDateSubmit = async (e) => {
     e.preventDefault();
-    console.log(`Renting from ${fromDate} to ${toDate}`);
     const productRentObject = await ProductTransactionModelService.setRentTransaction(productId, product.price, fromDate, toDate);
     console.log(productRentObject);
     const response = await ProductDataService.rentProduct(productRentObject);
     console.log(response.data);
     handleModalClose();
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleBuySubmit = async (e) => {
+    e.preventDefault();
+    const productBuyObject = await ProductTransactionModelService.setBuyTransaction(productId, product.price);
+    const response = await ProductDataService.buyProduct(productBuyObject);
+    console.log(response.data);
+    setIsModalOpen(false);
+  };
+
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading product: {error.message}</div>;
@@ -63,6 +72,7 @@ const DetailProduct = () => {
     <div>
         <ProductDescription product={product} />
         <button onClick={handleRentClick}>Rent</button>
+        <button onClick={() => setIsModalOpen(true)}>Buy Product</button>
         <ProductModal
           isOpen={modalOpen}
           onClose={handleModalClose}
@@ -72,7 +82,13 @@ const DetailProduct = () => {
           toValue={toDate}
           onToChange={(e) => setToDate(e.target.value)}
         />
-      </div>
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleBuySubmit}
+        message="Are you sure you want to Buy this product?"
+      />
+    </div>
     );
 };
 
