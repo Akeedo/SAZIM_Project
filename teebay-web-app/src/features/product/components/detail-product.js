@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ProductDataService from '../services/product-data-service';
 import ProductDescription from '../views/product-description';
 import ProductModal from '../views/product-model';
@@ -12,6 +13,7 @@ const DetailProduct = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -51,7 +53,10 @@ const DetailProduct = () => {
     console.log(productRentObject);
     const response = await ProductDataService.rentProduct(productRentObject);
     console.log(response.data);
+    alert(response.message);
+    
     handleModalClose();
+    navigate('/');
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +64,8 @@ const DetailProduct = () => {
     e.preventDefault();
     const productBuyObject = await ProductTransactionModelService.setBuyTransaction(productId, product.price);
     const response = await ProductDataService.buyProduct(productBuyObject);
-    console.log(response.data);
+    alert(response.message);
+    navigate('/');
     setIsModalOpen(false);
   };
 
