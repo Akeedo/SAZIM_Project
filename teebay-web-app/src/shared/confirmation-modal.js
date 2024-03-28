@@ -7,7 +7,7 @@ const ConfirmationModal = ({ isOpen, onClose, onConfirm, message }) => {
   return (
     <div className="modal-backdrop">
       <div className="modal-content">
-        <p>{message}</p>
+        <p style={{ color: 'black' }}>{message}</p>
         <button onClick={onConfirm}>Confirm</button>
         <button onClick={onClose}>Cancel</button>
       </div>
