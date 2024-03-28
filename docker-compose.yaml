@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  # Assuming you have other services like 'app' for your backend and 'db' for your database
+  app:
+    build: 
+      context: ./TeebayApi # Update this path as necessary
+    container_name: teebay-api
+    restart: unless-stopped
+    ports:
+      - "3030:3030"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/teebay?schema=public
+    depends_on:
+      - db
+
+  web:
+    build:
+      context: ./teebay-web-app # Points to the directory containing the Dockerfile for the React app
+    container_name: teebay-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000" # Assuming the Nginx server in the Dockerfile serves on port 80
+    volumes:
+      - ./teebay-web-app/src:/app/src
+      - ./teebay-web-app/public:/app/public
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  db:
+    image: postgres:latest
+    container_name: teebay-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=teebay
+    ports:
+      - "5432:5432" # Optional: only needed if you want to access the DB from the host
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database_schema:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:
