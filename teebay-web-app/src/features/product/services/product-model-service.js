@@ -14,8 +14,32 @@ const ProductModelService = () => {
         { key: 'toys', value: 'toys', text: 'Toys' },
     ];
 
-    const setDefaultProduct = async (product) => {
-        return product;
+    const validateField = (name, value) => {
+        let errors = {};
+        if (name === 'title' && !value.trim()) {
+            errors.title = 'Title is required';
+        } else if (name === 'description' && !value.trim()) {
+            errors.description = 'Description is required';
+        } else if (name === 'price' && (value <= 0 || isNaN(value))) {
+            errors.price = 'Price must be greater than 0';
+        } else if (name === 'category' && !value.trim()) {
+            errors.category = 'Category is required';
+        }
+        return errors;
+    };
+
+    const validateProduct = (productData) => {
+        let validationErrors = {};
+        Object.keys(productData).forEach(key => {
+            const fieldErrors = validateField(key, productData[key]);
+            validationErrors = { ...validationErrors, ...fieldErrors };
+        });
+        return validationErrors;
+      };
+
+    const setDefaultProduct = async (productInitial) => {
+        productInitial = product;
+        return productInitial;
     };
     
     
@@ -27,6 +51,7 @@ const ProductModelService = () => {
         setDefaultProduct,
         updateProductField,
         getCategories: () => categories,
+        validateProduct,
     };
 };
 
