@@ -1,8 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import { Table, Button  } from 'semantic-ui-react';
 
-import ProductDataService from '../services/product-data-service';
 
 function ProductTable({ products, onDelete, handleUpdateClick, handleDetailClick }) {
    
