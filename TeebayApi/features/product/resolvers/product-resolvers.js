@@ -5,17 +5,20 @@ const prisma = new PrismaClient();
 
 const productResolvers = {
   Query: {
-    products: async () => {
-      try {
-        const { data } = await axios.get('http://localhost:4000/api/products');
-        return data;
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    },
+    products: async () => await prisma.products.findMany(),
     product: async (_, { id }) => await prisma.products.findUnique({
       where: { id: parseInt(id) },
     }),
+    userTransactionsWithProducts: async (_, { userId }) => {
+      try {
+        const userIdInInteger = parseInt(userId);
+        const transactions = await ProductModel.getUserTransactionsWithProducts(userIdInInteger);
+        return transactions;
+      } catch (error) {
+        console.error("Error fetching user transactions with products:", error);
+        throw new Error("Failed to fetch transactions.");
+      }
+    },
   },
   Mutation: {
     createProduct: async (_, args) => {
@@ -46,10 +49,6 @@ const productResolvers = {
       });
     },
   },
-  Product: {
-    price: (parent) => parent.price.toNumber(),
-  
-  }
 };
 
 module.exports = productResolvers;
