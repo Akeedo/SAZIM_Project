@@ -4,7 +4,7 @@ const  authenticateToken  = require('../../middlewire/authenticateToken');
 const { createUserValidationRules, validate } = require('./validations/user-validation');
 const userController = require('./controllers/user-controller');
 
-router.post('/', [authenticateToken, createUserValidationRules(), validate], userController.createUser);
+router.post('/', [createUserValidationRules(), validate], userController.createUser);
 router.get('/:userId/transactions', userController.fetchUserTransactionsController);
 
 module.exports = router;
