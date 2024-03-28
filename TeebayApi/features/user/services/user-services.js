@@ -8,9 +8,13 @@ const UserService = {
     },
 
     async createUser(userData) {
-        const saltRounds = 10;
-        userData.password = await bcrypt.hash(userData.password, saltRounds);
-        return UserModel.create(userData);
+        try{
+            const saltRounds = 10;
+            userData.password = await bcrypt.hash(userData.password, saltRounds);
+            const response =  UserModel.create(userData);
+            return response;
+        }catch(error){console.error(error);res.status(500).json({message:"An error occurred while creating the user.",error:error.message});}
+       
     },
 
     async fetchUserTransactions(userId) {
