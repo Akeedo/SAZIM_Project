@@ -33,9 +33,9 @@ const ProductDataService = () => {
 const updateProduct = async (productId, product) => {
   try {
     const response = await axiosInstance({ method: 'PUT', url: `/products/${productId}`, data: product }).then((response) => response);
-      return response.data;
-  } catch (error) {
-      throw error; 
+        return response.data;
+    } catch (error) {
+        throw error; 
   }
 };
 
