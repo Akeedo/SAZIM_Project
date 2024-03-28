@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Ensure axios is used appropriately within UserDataService
 import UserDataService from '../services/user-data-service';
 import UserModelService from '../services/user-model-service';
@@ -9,14 +10,12 @@ const CreateUser = () => {
     const [isLoading, setIsLoading] = useState(false);
     const initialUser = UserModelService.createDefaultUser(); // Assume similar method in UserModelService\
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [validationErrors, setValidationErrors] = useState({});
+
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
-        firstName: initialUser.firstName,
-        lastName: initialUser.lastName,
-        address: initialUser.address,
-        phoneNumber: initialUser.phoneNumber,
-        email: initialUser.email,
-        password: initialUser.password,
+     ...initialUser
     });
 
     const handleConfirmPasswordChange = (e, { value }) => {
@@ -29,15 +28,26 @@ const CreateUser = () => {
     };
 
     const handleSubmit = async () => {
+            const errors = UserModelService.validateCreateUser(user);
+                if (Object.keys(errors).length > 0) {
+                    setValidationErrors(errors); 
+                    return;
+        }
+        setValidationErrors({});
+
         setIsLoading(true);
         try {
             if (user.password !== confirmPassword) {
                 alert("Passwords do not match.");
-                return; // Stop the submission if passwords don't match
+                return;
             }
             const response = await UserDataService.addUser(user); 
-            console.log(response.data);
+           
             setIsLoading(false);
+            if(!response.error){
+                alert(response.message);
+                navigate('/login');
+            }
         } catch (error) {
             console.error("There was an error posting the data", error);
             setError(error);
@@ -52,6 +62,7 @@ const CreateUser = () => {
             handleConfirmPasswordChange={handleConfirmPasswordChange}
             confirmPassword={confirmPassword}
             handleSubmit={handleSubmit}
+            validationErrors={validationErrors}
         />
     );
 };
