@@ -11,9 +11,9 @@ const UserController = {
         }
 
             const newUser = await UserService.createUser({ firstName, lastName, address, phoneNumber, email, password });
-            res.status(201).json(newUser);
+            res.status(201).json({ message: "New User is created " + newUser.first_name + " " + newUser.last_name});
         } catch (error) {
-            console.error(error);
+            console.log(error);
             res.status(500).json({ message: "An error occurred while creating the user.", error: error.message });
         }
     },
