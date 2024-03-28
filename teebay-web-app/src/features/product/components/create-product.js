@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import ProductDataService from '../services/product-data-service';
 import ProductModelService from '../services/product-model-service';
 import ProductForm from '../views/product-form';
 
+
 const CreateProduct = () => {
 
+  const navigate = useNavigate();
+
   const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
     const initialProduct = ProductModelService.setDefaultProduct();
+    const [validationErrors, setValidationErrors] = useState({});
 
   const [product, setProduct] = useState({ ...initialProduct});
 
@@ -23,21 +26,32 @@ const CreateProduct = () => {
 };
 
   const handleSubmit = async () => {
+    const errors = ProductModelService.validateProduct(product);
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors); 
+      return;
+    }
+    setValidationErrors({});
     try {
       const response = await ProductDataService.addProduct(product);
-      console.log(response.data);
+      alert(response.message);
+      navigate('/');
     } catch (error) {
-      console.error("There was an error posting the data", error);
+      console.log("There was an error posting the data", error);
     }
   };
 
   return (
+    <div>
     <ProductForm
         product={product}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         categoriesOptions={categoriesOptions}
+        validationErrors={validationErrors}
       />
+     
+      </div>
   );
 };
 
