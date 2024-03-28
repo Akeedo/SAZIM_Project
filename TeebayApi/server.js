@@ -24,16 +24,9 @@ app.use(cors());
   app.use('/products', ProductRoutes);
   app.use('/users', UserRoutes);
 
-  app.get('/api/products', (req, res) => {
-    res.json([{
-        id: 1,
-        title: "Modular Shelving Unit",
-        description: "Customizable modular shelving unit, perfect for living rooms or offices.",
-        price: 320.00,
-        category: "furniture"
-      }
-    ]);
-  });
+  app.get('/', (req, res ) => 
+  res.json({ message: 'Docker is easy 🐳' }) 
+);3
   
 
 const PORT = process.env.PORT || 3030;
