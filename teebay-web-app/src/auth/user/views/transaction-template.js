@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Button, Form, Input } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
 const TransactionTemplate = ({ buyTransactions, rentTransactions }) => {
   const [activeTab, setActiveTab] = useState('Bought');
-
+  const navigate = useNavigate();
   const renderTransactions = (transactions) => transactions.map((transaction, index) => (
     <div key={index} className="product-detail">
       <h2>{transaction.product.title}</h2>
@@ -31,19 +33,22 @@ const TransactionTemplate = ({ buyTransactions, rentTransactions }) => {
 
   return (
     <div>
-      <ul className="tab-list">
-        {['Bought', 'Sold', 'Lend', 'Borrow'].map((tab) => (
-          <li
-            key={tab}
-            className={`tab-list-item ${activeTab === tab ? 'active' : ''}`}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab}
-          </li>
-        ))}
-      </ul>
-      <div className="tab-content">{renderContent()}</div>
-    </div>
+    <ul className="tab-list">
+      {['Bought', 'Sold', 'Lend', 'Borrow'].map((tab) => (
+        <li
+          key={tab}
+          className={`tab-list-item ${activeTab === tab ? 'active' : ''}`}
+          onClick={() => setActiveTab(tab)}
+        >{tab}
+        </li>
+      ))}
+    </ul>
+    
+    <div className="tab-content">{renderContent()}</div>
+    
+    <Button onClick={() => navigate('/')} >Back to Products</Button>
+  </div>
+
   );
 };
 

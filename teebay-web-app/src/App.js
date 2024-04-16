@@ -1,6 +1,6 @@
 
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,13 +21,19 @@ function App() {
 
   <Router>
         <Routes>
-          <Route path="/create-product" element={<AuthRoute component={CreateProduct} />} />
+          {/* Redirect root path to Login or GetAllProduct based on authentication */}
           <Route path="/" element={<AuthRoute component={GetAllProduct} />} />
+
+          {/* Authenticated routes */}
+          <Route path="/create-product" element={<AuthRoute component={CreateProduct} />} />
           <Route path="/update-product/:productId" element={<AuthRoute component={UpdateProduct} />} />
-          <Route path="/create-user" element={<CreateUser />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/product-detail/:productId" element={<AuthRoute component={DetailProduct} />} />
           <Route path="/user-product-transaction" element={<AuthRoute component={UserTransactionHistory} />} />
+
+          {/* Public routes */}
+          <Route path="/create-user" element={<CreateUser />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </Router>
   </div>

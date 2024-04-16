@@ -49,7 +49,7 @@ const CreateUser = () => {
                 navigate('/login');
             }
         } catch (error) {
-            console.error("There was an error posting the data", error);
+            alert("There was an error posting the data", error);
             setError(error);
             setIsLoading(false);
         }

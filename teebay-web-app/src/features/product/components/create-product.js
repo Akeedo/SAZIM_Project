@@ -25,21 +25,29 @@ const CreateProduct = () => {
     setProduct(updatedProductField);
 };
 
-  const handleSubmit = async () => {
-    const errors = ProductModelService.validateProduct(product);
-    if (Object.keys(errors).length > 0) {
-      setValidationErrors(errors); 
-      return;
-    }
-    setValidationErrors({});
-    try {
+const handleSubmit = async () => {
+  // Check if the product object is empty
+  // if (!product || Object.keys(product).length === 0) {
+  //     setValidationErrors({ general: "Product data cannot be empty." });
+  //     return;
+  // }
+
+  // const errors = ProductModelService.validateProduct(product);
+  // if (Object.keys(errors).length > 0) {
+  //     setValidationErrors(errors);
+  //     return;
+  // }
+  // setValidationErrors({});
+
+  try {
       const response = await ProductDataService.addProduct(product);
       alert(response.message);
       navigate('/');
-    } catch (error) {
+  } catch (error) {
       console.log("There was an error posting the data", error);
-    }
-  };
+  }
+};
+
 
   return (
     <div>

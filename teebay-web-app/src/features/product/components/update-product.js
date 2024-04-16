@@ -45,6 +45,7 @@ const handleChange = (e, { name, value }) => {
 };
 
   const handleSubmit = async () => {
+    
     const errors = ProductModelService.validateProduct(product);
     if (Object.keys(errors).length > 0) {
       setValidationErrors(errors); 
@@ -53,7 +54,8 @@ const handleChange = (e, { name, value }) => {
     setValidationErrors({});
     try {
         const response = await ProductDataService.updateProduct(productId, product);
-        alert(response.message);
+        alert("Product updated successfully");
+        navigate('/');
     } catch (error) {
         console.error("There was an error updating the product", error);
         setError(error);

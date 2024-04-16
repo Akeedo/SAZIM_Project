@@ -7,7 +7,7 @@ const ProductModal = ({ isOpen, onClose, onDateSubmit, fromValue, onFromChange, 
   return (
     <div className="modal-backdrop">
       <div className="modal-content">
-        <h3>Select Rental Dates</h3>
+        <h3 style={{ color: 'black' }}>Select Rental Dates</h3>
         <form onSubmit={onDateSubmit}>
           <label>
             From:

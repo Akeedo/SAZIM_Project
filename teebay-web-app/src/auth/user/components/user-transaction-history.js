@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import TransactionTemplate from '../views/transaction-template';
 import  Queries  from '../../../shared/queries'; 
 
+
 function UserTransactionHistory() {
   const user = localStorage.getItem('user');
   const userObject = JSON.parse(user);
@@ -11,6 +12,9 @@ function UserTransactionHistory() {
   const { loading, error, data } = useQuery(Queries.GET_USER_TRANSACTIONS_WITH_PRODUCTS, {
     variables: { userId },
   });
+
+
+
 
   if (loading) return <p>Loading transactions...</p>;
   if (error) return <p>Error loading transactions: {error.message}</p>;

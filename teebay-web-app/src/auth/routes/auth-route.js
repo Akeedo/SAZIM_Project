@@ -1,9 +1,15 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-const AuthRoute = ({ component: Component }) => {
-  const token = localStorage.getItem('token');
-
-  return token ? <Component /> : <Navigate to="/login" />;
+const isAuthenticated = () => {
+  return localStorage.getItem('token') !== null;
 };
+
+const AuthRoute = ({ component: Component }) => {
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" />;
+  }
+  return <Component />;
+};
+
 export default AuthRoute;

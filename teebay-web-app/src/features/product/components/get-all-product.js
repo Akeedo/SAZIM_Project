@@ -6,7 +6,7 @@ import  Queries  from '../../../shared/queries';
 import ProductDataService from '../services/product-data-service';
 import { Button } from 'semantic-ui-react';
 import ConfirmationModal from '../../../shared/confirmation-modal';
-
+import ProductModelService from '../services/product-model-service';
 
 function GetAllProduct() {
   const navigate = useNavigate();
@@ -47,10 +47,25 @@ function GetAllProduct() {
           });
     };
 
+    const categories = ProductModelService.getCategories();
+
+ // Function to get category text by category value
+
 
     if (loading) return <p>Loading transactions...</p>;
     if (error) return <p>Error loading transactions: {error.message}</p>;
 
+    const getCategoryText = (categoryValue) => {
+      const categoryObj = categories.find(cat => cat.value === categoryValue);
+      return categoryObj ? categoryObj.text : categoryValue; // Fallback to the original value if not found
+    };
+    
+    // Assuming data.products exists and is an array of product objects
+    const updatedProducts = data.products.map(product => ({
+      ...product,
+      category: getCategoryText(product.category), // Update the category with the matched category text
+    }));
+    
   return (
     <div>
       <h2>All Products</h2>
@@ -60,7 +75,7 @@ function GetAllProduct() {
     </div>
 
      
-      <ProductTable products={data.products} onDelete={handleDeleteClick} handleUpdateClick={handleUpdateClick} handleDetailClick={handleDetailClick} />
+      <ProductTable products={updatedProducts} onDelete={handleDeleteClick} handleUpdateClick={handleUpdateClick} handleDetailClick={handleDetailClick} />
       <ConfirmationModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

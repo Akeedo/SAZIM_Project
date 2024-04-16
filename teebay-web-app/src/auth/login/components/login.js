@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import AuthDataService from '../services/auth-data-service';
 import UserModelService from '../../user/services/user-model-service';
-
+import axios from 'axios';
 
 const Login = () => {
 
@@ -32,13 +32,14 @@ const Login = () => {
     }
   
     setValidationErrors({}); // Clear previous errors
-  
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     AuthDataService.authenticateUser(loginDetails)
       .then((response) => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         alert(response.data.message);
-        navigate('/'); // Navigate after successful login
+        reloadPage();
       })
       .catch((error) => {
         setError('Login failed. Please check your credentials and try again.');
@@ -46,6 +47,10 @@ const Login = () => {
         console.error('Login failed:', error);
       });
   };
+
+  function reloadPage() {
+   navigate('/');
+  }
   
   const handleSignupClick = () => {
     navigate('/create-user');

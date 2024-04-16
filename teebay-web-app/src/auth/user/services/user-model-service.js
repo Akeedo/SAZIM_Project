@@ -34,6 +34,11 @@ const UserModelService = () => {
               errors.lastName = 'Last name is required';
             }
             break;
+            case 'address':
+            if (!value.trim()) {
+              errors.address = 'Address is required';
+            }
+            break;
           case 'email':
             if (!/\S+@\S+\.\S+/.test(value)) {
               errors.email = 'Email is not valid';
