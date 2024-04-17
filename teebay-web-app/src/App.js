@@ -12,10 +12,12 @@ import Login from './auth/login/components/login';
 import DetailProduct from './features/product/components/detail-product';
 import UserTransactionHistory from './auth/user/components/user-transaction-history';
 import AuthRoute from './auth/routes/auth-route';
-
+import HeaderComponent from './layout/Header';
 
 function App() {
   return (
+    <div>
+    <HeaderComponent />
     <div className="main">
   <h2 className="main-header">Teebay</h2>
 
@@ -37,7 +39,7 @@ function App() {
         </Routes>
       </Router>
   </div>
-    
+  </div>
   );
 }
 

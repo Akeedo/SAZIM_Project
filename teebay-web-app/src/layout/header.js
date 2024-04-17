@@ -55,7 +55,14 @@ const HeaderComponent = () => {
                         <div className="input-group">
                             {/* <input type="text" className="form-control" placeholder="Search this blog"> */}
                             <div className="input-group-append">
-                            <button className="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                            <button className="btn btn-secondary" type="button"   style={{
+                                    backgroundColor: '#f26522',
+                                    borderColor: '#f26522',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    marginBottom: '10px'
+                                }}
+                            >
                             <i className="fa fa-search"></i>
                             </button>
                             </div>
@@ -75,7 +82,7 @@ const HeaderComponent = () => {
                         </div>
                         <div className="login_menu">
                             <ul>
-                            <li><a>
+                            <li><a href="#">
                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <span className="padding_10">Cart</span></a>
                             </li>
