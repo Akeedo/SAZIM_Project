@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate  } from 'react-router-dom'
-import 'semantic-ui-css/semantic.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'semantic-ui-css/semantic.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CreateProduct from './features/product/components/create-product';
 import GetAllProduct from './features/product/components/get-all-product';
@@ -62,7 +62,7 @@ function App() {
                             <button className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i className="fas fa-search text-primary"></i></button>
                             <a href="#" className="position-relative me-4 my-auto">
                                 <i className="fa fa-shopping-bag fa-2x"></i>
-                                <span className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                                <span className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style={{ top: '-5px', left: '15px', height: '20px', minWidth: '20px' }}>3</span>
                             </a>
                             <a href="#" className="my-auto">
                                 <i className="fas fa-user fa-2x"></i>
@@ -76,7 +76,7 @@ function App() {
 
 
         {/* Modal Search Start */}
-        <div className="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {/* <div className="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-fullscreen">
                 <div className="modal-content rounded-0">
                     <div className="modal-header">
@@ -91,7 +91,7 @@ function App() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
         {/* Modal Search End */}
 
 
@@ -104,18 +104,18 @@ function App() {
                         <h1 className="mb-5 display-3 text-primary">Organic Veggies & Fruits Foods</h1>
                         <div className="position-relative mx-auto">
                             <input className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder="Search"/>
-                            <button type="submit" className="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style="top: 0; right: 25%;">Submit Now</button>
+                            <button type="submit" className="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style={{ top: 0, right: '25%' }}>Submit Now</button>
                         </div>
                     </div>
                     <div className="col-md-12 col-lg-5">
                         <div id="carouselId" className="carousel slide position-relative" data-bs-ride="carousel">
                             <div className="carousel-inner" role="listbox">
                                 <div className="carousel-item active rounded">
-                                    <img src="img/hero-img-1.png" className="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide"/>
+                                    <img src="assets/img/hero-img-1.png" className="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide"/>
                                     <a href="#" className="btn px-4 py-2 text-white rounded">Fruites</a>
                                 </div>
                                 <div className="carousel-item rounded">
-                                    <img src="img/hero-img-2.jpg" className="img-fluid w-100 h-100 rounded" alt="Second slide"/>
+                                    <img src="assets/img/hero-img-2.jpg" className="img-fluid w-100 h-100 rounded" alt="Second slide"/>
                                     <a href="#" className="btn px-4 py-2 text-white rounded">Vesitables</a>
                                 </div>
                             </div>
@@ -201,27 +201,27 @@ function App() {
                             <ul className="nav nav-pills d-inline-flex text-center mb-5">
                                 <li className="nav-item">
                                     <a className="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
-                                        <span className="text-dark" style="width: 130px;">All Products</span>
+                                        <span className="text-dark" style={{ width: '130px' }}>All Products</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                        <span className="text-dark" style="width: 130px;">Vegetables</span>
+                                        <span className="text-dark" style={{ width: '130px' }}>Vegetables</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                        <span className="text-dark" style="width: 130px;">Fruits</span>
+                                        <span className="text-dark" style={{ width: '130px' }}>Fruits</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                        <span className="text-dark" style="width: 130px;">Bread</span>
+                                        <span className="text-dark" style={{ width: '130px' }}>Bread</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                                        <span className="text-dark" style="width: 130px;">Meat</span>
+                                        <span className="text-dark" style={{ width: '130px' }}>Meat</span>
                                     </a>
                                 </li>
                             </ul>
@@ -235,9 +235,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Grapes</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -251,9 +251,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Grapes</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -267,9 +267,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Raspberries</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -283,9 +283,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-4.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-4.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Apricots</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -299,9 +299,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-3.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-3.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Banana</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -315,9 +315,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-1.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-1.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Oranges</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -331,9 +331,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Raspberries</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -347,9 +347,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Grapes</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -371,9 +371,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Grapes</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -387,9 +387,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Raspberries</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -411,9 +411,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-1.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-1.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Oranges</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -427,9 +427,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-6.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-6.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Apple</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -451,9 +451,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Grapes</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -467,9 +467,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-4.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-4.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Apricots</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -491,9 +491,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-3.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-3.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Banana</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -507,9 +507,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Raspberries</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -523,9 +523,9 @@ function App() {
                                         <div className="col-md-6 col-lg-4 col-xl-3">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img">
-                                                    <img src="img/fruite-item-1.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                                                    <img src="assets/img/fruite-item-1.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                                                 </div>
-                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
+                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: '10px', left: '10px' }}>Fruits</div>
                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>Oranges</h4>
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -554,7 +554,7 @@ function App() {
                     <div className="col-md-6 col-lg-4">
                         <a href="#">
                             <div className="service-item bg-secondary rounded border border-secondary">
-                                <img src="img/featur-1.jpg" className="img-fluid rounded-top w-100" alt=""/>
+                                <img src="assets/img/featur-1.jpg" className="img-fluid rounded-top w-100" alt=""/>
                                 <div className="px-4 rounded-bottom">
                                     <div className="service-content bg-primary text-center p-4 rounded">
                                         <h5 className="text-white">Fresh Apples</h5>
@@ -567,7 +567,7 @@ function App() {
                     <div className="col-md-6 col-lg-4">
                         <a href="#">
                             <div className="service-item bg-dark rounded border border-dark">
-                                <img src="img/featur-2.jpg" className="img-fluid rounded-top w-100" alt=""/>
+                                <img src="assets/img/featur-2.jpg" className="img-fluid rounded-top w-100" alt=""/>
                                 <div className="px-4 rounded-bottom">
                                     <div className="service-content bg-light text-center p-4 rounded">
                                         <h5 className="text-primary">Tasty Fruits</h5>
@@ -580,7 +580,7 @@ function App() {
                     <div className="col-md-6 col-lg-4">
                         <a href="#">
                             <div className="service-item bg-primary rounded border border-primary">
-                                <img src="img/featur-3.jpg" className="img-fluid rounded-top w-100" alt=""/>
+                                <img src="assets/img/featur-3.jpg" className="img-fluid rounded-top w-100" alt=""/>
                                 <div className="px-4 rounded-bottom">
                                     <div className="service-content bg-secondary text-center p-4 rounded">
                                         <h5 className="text-white">Exotic Vegitable</h5>
@@ -603,9 +603,9 @@ function App() {
                 <div className="owl-carousel vegetable-carousel justify-content-center">
                     <div className="border border-primary rounded position-relative vesitable-item">
                         <div className="vesitable-img">
-                            <img src="img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                            <img src="assets/img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                         </div>
-                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: '10px', right: '10px' }}>Vegetable</div>
                         <div className="p-4 rounded-bottom">
                             <h4>Parsely</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -617,9 +617,9 @@ function App() {
                     </div>
                     <div className="border border-primary rounded position-relative vesitable-item">
                         <div className="vesitable-img">
-                            <img src="img/vegetable-item-1.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                            <img src="assets/img/vegetable-item-1.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                         </div>
-                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: '10px', right: '10px' }}>Vegetable</div>
                         <div className="p-4 rounded-bottom">
                             <h4>Parsely</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -631,9 +631,9 @@ function App() {
                     </div>
                     <div className="border border-primary rounded position-relative vesitable-item">
                         <div className="vesitable-img">
-                            <img src="img/vegetable-item-3.png" className="img-fluid w-100 rounded-top bg-light" alt=""/>
+                            <img src="assets/img/vegetable-item-3.png" className="img-fluid w-100 rounded-top bg-light" alt=""/>
                         </div>
-                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: '10px', right: '10px' }}>Vegetable</div>
                         <div className="p-4 rounded-bottom">
                             <h4>Banana</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -645,9 +645,9 @@ function App() {
                     </div>
                     <div className="border border-primary rounded position-relative vesitable-item">
                         <div className="vesitable-img">
-                            <img src="img/vegetable-item-4.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                            <img src="assets/img/vegetable-item-4.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                         </div>
-                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: '10px', right: '10px' }}>Vegetable</div>
                         <div className="p-4 rounded-bottom">
                             <h4>Bell Papper</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -659,9 +659,9 @@ function App() {
                     </div>
                     <div className="border border-primary rounded position-relative vesitable-item">
                         <div className="vesitable-img">
-                            <img src="img/vegetable-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                            <img src="assets/img/vegetable-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                         </div>
-                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: '10px', right: '10px' }}>Vegetable</div>
                         <div className="p-4 rounded-bottom">
                             <h4>Potatoes</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -673,9 +673,9 @@ function App() {
                     </div>
                     <div className="border border-primary rounded position-relative vesitable-item">
                         <div className="vesitable-img">
-                            <img src="img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                            <img src="assets/img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                         </div>
-                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: '10px', right: '10px' }}>Vegetable</div>
                         <div className="p-4 rounded-bottom">
                             <h4>Parsely</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -687,9 +687,9 @@ function App() {
                     </div>
                     <div className="border border-primary rounded position-relative vesitable-item">
                         <div className="vesitable-img">
-                            <img src="img/vegetable-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                            <img src="assets/img/vegetable-item-5.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                         </div>
-                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: '10px', right: '10px' }}>Vegetable</div>
                         <div className="p-4 rounded-bottom">
                             <h4>Potatoes</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -701,9 +701,9 @@ function App() {
                     </div>
                     <div className="border border-primary rounded position-relative vesitable-item">
                         <div className="vesitable-img">
-                            <img src="img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt=""/>
+                            <img src="assets/img/vegetable-item-6.jpg" className="img-fluid w-100 rounded-top" alt=""/>
                         </div>
-                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
+                        <div className="text-white bg-primary px-3 py-1 rounded position-absolute" style={{ top: '10px', right: '10px' }}>Vegetable</div>
                         <div className="p-4 rounded-bottom">
                             <h4>Parsely</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
@@ -733,9 +733,9 @@ function App() {
                     </div>
                     <div className="col-lg-6">
                         <div className="position-relative">
-                            <img src="img/baner-1.png" className="img-fluid w-100 rounded" alt=""/>
-                            <div className="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute" style="width: 140px; height: 140px; top: 0; left: 0;">
-                                <h1 style="font-size: 100px;">1</h1>
+                            <img src="assets/img/baner-1.png" className="img-fluid w-100 rounded" alt=""/>
+                            <div className="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute" style={{ width: '140px', height: '140px', top: 0, left: 0 }}>
+                                <h1 style={{ fontSize: '100px' }}>1</h1>
                                 <div className="d-flex flex-column">
                                     <span className="h2 mb-0">50$</span>
                                     <span className="h4 text-muted mb-0">kg</span>
@@ -752,7 +752,7 @@ function App() {
         {/* Bestsaler Product Start */}
         <div className="container-fluid py-5">
             <div className="container py-5">
-                <div className="text-center mx-auto mb-5" style="max-width: 700px;">
+                <div className="text-center mx-auto mb-5" style={{ maxWidth: '700px' }}>
                     <h1 className="display-4">Bestseller Products</h1>
                     <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
                 </div>
@@ -761,7 +761,7 @@ function App() {
                         <div className="p-4 rounded bg-light">
                             <div className="row align-items-center">
                                 <div className="col-6">
-                                    <img src="img/best-product-1.jpg" className="img-fluid rounded-circle w-100" alt=""/>
+                                    <img src="assets/img/best-product-1.jpg" className="img-fluid rounded-circle w-100" alt=""/>
                                 </div>
                                 <div className="col-6">
                                     <a href="#" className="h5">Organic Tomato</a>
@@ -782,7 +782,7 @@ function App() {
                         <div className="p-4 rounded bg-light">
                             <div className="row align-items-center">
                                 <div className="col-6">
-                                    <img src="img/best-product-2.jpg" className="img-fluid rounded-circle w-100" alt=""/>
+                                    <img src="assets/img/best-product-2.jpg" className="img-fluid rounded-circle w-100" alt=""/>
                                 </div>
                                 <div className="col-6">
                                     <a href="#" className="h5">Organic Tomato</a>
@@ -803,7 +803,7 @@ function App() {
                         <div className="p-4 rounded bg-light">
                             <div className="row align-items-center">
                                 <div className="col-6">
-                                    <img src="img/best-product-3.jpg" className="img-fluid rounded-circle w-100" alt=""/>
+                                    <img src="assets/img/best-product-3.jpg" className="img-fluid rounded-circle w-100" alt=""/>
                                 </div>
                                 <div className="col-6">
                                     <a href="#" className="h5">Organic Tomato</a>
@@ -824,7 +824,7 @@ function App() {
                         <div className="p-4 rounded bg-light">
                             <div className="row align-items-center">
                                 <div className="col-6">
-                                    <img src="img/best-product-4.jpg" className="img-fluid rounded-circle w-100" alt=""/>
+                                    <img src="assets/img/best-product-4.jpg" className="img-fluid rounded-circle w-100" alt=""/>
                                 </div>
                                 <div className="col-6">
                                     <a href="#" className="h5">Organic Tomato</a>
@@ -845,7 +845,7 @@ function App() {
                         <div className="p-4 rounded bg-light">
                             <div className="row align-items-center">
                                 <div className="col-6">
-                                    <img src="img/best-product-5.jpg" className="img-fluid rounded-circle w-100" alt=""/>
+                                    <img src="assets/img/best-product-5.jpg" className="img-fluid rounded-circle w-100" alt=""/>
                                 </div>
                                 <div className="col-6">
                                     <a href="#" className="h5">Organic Tomato</a>
@@ -866,7 +866,7 @@ function App() {
                         <div className="p-4 rounded bg-light">
                             <div className="row align-items-center">
                                 <div className="col-6">
-                                    <img src="img/best-product-6.jpg" className="img-fluid rounded-circle w-100" alt=""/>
+                                    <img src="assets/img/best-product-6.jpg" className="img-fluid rounded-circle w-100" alt=""/>
                                 </div>
                                 <div className="col-6">
                                     <a href="#" className="h5">Organic Tomato</a>
@@ -885,7 +885,7 @@ function App() {
                     </div>
                     <div className="col-md-6 col-lg-6 col-xl-3">
                         <div className="text-center">
-                            <img src="img/fruite-item-1.jpg" className="img-fluid rounded" alt=""/>
+                            <img src="assets/img/fruite-item-1.jpg" className="img-fluid rounded" alt=""/>
                             <div className="py-4">
                                 <a href="#" className="h5">Organic Tomato</a>
                                 <div className="d-flex my-3 justify-content-center">
@@ -902,7 +902,7 @@ function App() {
                     </div>
                     <div className="col-md-6 col-lg-6 col-xl-3">
                         <div className="text-center">
-                            <img src="img/fruite-item-2.jpg" className="img-fluid rounded" alt=""/>
+                            <img src="assets/img/fruite-item-2.jpg" className="img-fluid rounded" alt=""/>
                             <div className="py-4">
                                 <a href="#" className="h5">Organic Tomato</a>
                                 <div className="d-flex my-3 justify-content-center">
@@ -919,7 +919,7 @@ function App() {
                     </div>
                     <div className="col-md-6 col-lg-6 col-xl-3">
                         <div className="text-center">
-                            <img src="img/fruite-item-3.jpg" className="img-fluid rounded" alt=""/>
+                            <img src="assets/img/fruite-item-3.jpg" className="img-fluid rounded" alt=""/>
                             <div className="py-4">
                                 <a href="#" className="h5">Organic Tomato</a>
                                 <div className="d-flex my-3 justify-content-center">
@@ -936,7 +936,7 @@ function App() {
                     </div>
                     <div className="col-md-6 col-lg-6 col-xl-3">
                         <div className="text-center">
-                            <img src="img/fruite-item-4.jpg" className="img-fluid rounded" alt=""/>
+                            <img src="assets/img/fruite-item-4.jpg" className="img-fluid rounded" alt=""/>
                             <div className="py-2">
                                 <a href="#" className="h5">Organic Tomato</a>
                                 <div className="d-flex my-3 justify-content-center">
@@ -1007,14 +1007,14 @@ function App() {
                 <div className="owl-carousel testimonial-carousel">
                     <div className="testimonial-item img-border-radius bg-light rounded p-4">
                         <div className="position-relative">
-                            <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+                            <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style={{ bottom: '30px', right: 0 }}></i>
                             <div className="mb-4 pb-4 border-bottom border-secondary">
                                 <p className="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 </p>
                             </div>
                             <div className="d-flex align-items-center flex-nowrap">
                                 <div className="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" className="img-fluid rounded" style="width: 100px; height: 100px;" alt=""/>
+                                    <img src="../assets/img/testimonial-1.jpg" className="img-fluid rounded" style={{ width: '100px', height: '100px' }} alt=""/>
                                 </div>
                                 <div className="ms-4 d-block">
                                     <h4 className="text-dark">Client Name</h4>
@@ -1032,14 +1032,14 @@ function App() {
                     </div>
                     <div className="testimonial-item img-border-radius bg-light rounded p-4">
                         <div className="position-relative">
-                            <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+                            <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style={{ bottom: '30px', right: 0 }}></i>
                             <div className="mb-4 pb-4 border-bottom border-secondary">
                                 <p className="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 </p>
                             </div>
                             <div className="d-flex align-items-center flex-nowrap">
                                 <div className="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" className="img-fluid rounded" style="width: 100px; height: 100px;" alt=""/>
+                                    <img src="assets/img/testimonial-1.jpg" className="img-fluid rounded" style={{ width: '100px', height: '100px' }} alt=""/>
                                 </div>
                                 <div className="ms-4 d-block">
                                     <h4 className="text-dark">Client Name</h4>
@@ -1057,14 +1057,14 @@ function App() {
                     </div>
                     <div className="testimonial-item img-border-radius bg-light rounded p-4">
                         <div className="position-relative">
-                            <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+                            <i className="fa fa-quote-right fa-2x text-secondary position-absolute" style={{ bottom: '30px', right: 0 }}></i>
                             <div className="mb-4 pb-4 border-bottom border-secondary">
                                 <p className="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 </p>
                             </div>
                             <div className="d-flex align-items-center flex-nowrap">
                                 <div className="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" className="img-fluid rounded" style="width: 100px; height: 100px;" alt=""/>
+                                    <img src="assets/img/testimonial-1.jpg" className="img-fluid rounded" style={{ width: '100px', height: '100px' }} alt=""/>
                                 </div>
                                 <div className="ms-4 d-block">
                                     <h4 className="text-dark">Client Name</h4>
@@ -1089,7 +1089,7 @@ function App() {
         {/* Footer Start */}
         <div className="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
             <div className="container py-5">
-                <div className="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5) ;">
+                <div className="pb-4 mb-4" style={{ borderBottom: '1px solid rgba(226, 175, 24, 0.5)' }}>
                     <div className="row g-4">
                         <div className="col-lg-3">
                             <a href="#">
@@ -1100,7 +1100,7 @@ function App() {
                         <div className="col-lg-6">
                             <div className="position-relative mx-auto">
                                 <input className="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Your Email"/>
-                                <button type="submit" className="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0;">Subscribe Now</button>
+                                <button type="submit" className="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style={{ top: 0, right: 0 }}>Subscribe Now</button>
                             </div>
                         </div>
                         <div className="col-lg-3">
@@ -1151,7 +1151,7 @@ function App() {
                             <p>Email: Example@gmail.com</p>
                             <p>Phone: +0123 4567 8910</p>
                             <p>Payment Accepted</p>
-                            <img src="img/payment.png" className="img-fluid" alt=""/>
+                            <img src="assets/img/payment.png" className="img-fluid" alt=""/>
                         </div>
                     </div>
                 </div>
